@@ -154,9 +154,9 @@ function maybeUnlink (target) {
   } catch (e) {}
 }
 
-function spawn (args, opts, cb) {
+function spawn (args, opts, done) {
   if (typeof opts === 'function') {
-    cb = opts;
+    done = opts;
     opts = {};
   }
 
@@ -173,7 +173,7 @@ function spawn (args, opts, cb) {
   }));
 
   proc.on('close', function (code) {
-    cb({
+    done({
       status: code,
       stdout: stdout.toString(),
       stderr: stderr.toString()
